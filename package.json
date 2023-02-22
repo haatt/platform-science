@@ -1,0 +1,19 @@
+{
+  "name": "platform-science",
+  "version": "1.0.0",
+  "description": "Test for Rafael Rivera",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haatt/platform-science.git"
+  },
+  "author": "Jose Rafael Rivera Hernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haatt/platform-science/issues"
+  },
+  "homepage": "https://github.com/haatt/platform-science#readme"
+}
