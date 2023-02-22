@@ -67,35 +67,20 @@ function findBestDriver(driversArray, address) {
 }
 
 export async function assignRoutes(driversRoute, addressRoute) {
-  let driversArray = await processDrivers(driversRoute);
-  let routeAdded = [];
+  const driversArray = await processDrivers(driversRoute);
   const addressArray = await processAddress(addressRoute);
+
   let noBurnedDrivers = [...driversArray];
+  let routeAdded = [];
 
   const routes = addressArray.reduce((routes, address) => {
-    const bestDriver = findBestDriver(driversArray, address);
-    const bRKey = bestDriver.name.replace(" ", "");
-
-    if (routeAdded.includes(bRKey)) {
-      routes.push({
-        address,
-        "driver": null,
-        "suitabilityScore": 0
-      });
-    } else {
-      routes.push({
-        address,
-        "driver": bestDriver.name,
-        "suitabilityScore": bestDriver.ss
-      });
-
-      routeAdded.push(bRKey);
-      noBurnedDrivers.splice(noBurnedDrivers.indexOf(bestDriver.name), 1);
-    }
+    routes.push({
+      address,
+      "driver": null,
+      "suitabilityScore": 0
+    });
     return routes
   }, []);
-
-  routeAdded = [];
 
   while (noBurnedDrivers.length !== 0) {
     routes.forEach(route => {
@@ -109,7 +94,6 @@ export async function assignRoutes(driversRoute, addressRoute) {
         routeAdded.push(bRKey);
         noBurnedDrivers.splice(noBurnedDrivers.indexOf(bestDriver.name), 1);
       }
-      
     });
   }
 
